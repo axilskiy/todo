@@ -92,10 +92,10 @@
             </p>
           </div>
 
-          <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
             <button
               @click="startEdit(cat)"
-              class="btn-ghost p-1.5 rounded-lg text-xs"
+              class="btn-ghost p-2 rounded-lg"
               :title="t('categories.editCategory')"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,7 +105,7 @@
             <button
               v-if="!cat.isDefault"
               @click="handleDelete(cat.id)"
-              class="btn-ghost p-1.5 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+              class="btn-ghost p-2 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
               :title="t('confirm.deleteCategory')"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

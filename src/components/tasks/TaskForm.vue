@@ -1,23 +1,24 @@
 <template>
   <Teleport to="body">
+    <!-- Bottom-sheet on mobile, centered modal on sm+ -->
     <div
-      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      class="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
       @click.self="$emit('close')"
     >
       <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="$emit('close')" />
-      <div class="relative card w-full max-w-lg animate-slide-up">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800">
+      <div class="relative card w-full sm:max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-xl animate-slide-up flex flex-col">
+        <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex-shrink-0">
           <h2 class="text-base font-semibold text-gray-900 dark:text-white">
             {{ editTask ? t('taskForm.editTask') : t('taskForm.newTask') }}
           </h2>
-          <button @click="$emit('close')" class="btn-ghost p-1.5 rounded-lg">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button @click="$emit('close')" class="btn-ghost p-1.5 rounded-lg !min-h-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        <form @submit.prevent="handleSubmit" class="px-6 py-4 space-y-4">
+        <form @submit.prevent="handleSubmit" class="px-4 sm:px-6 py-4 space-y-4 overflow-y-auto">
           <div>
             <label class="label" for="task-title">{{ t('taskForm.titleLabel') }}</label>
             <input
@@ -36,13 +37,13 @@
             <textarea
               id="task-desc"
               v-model="form.description"
-              class="input resize-none"
+              class="input resize-none !min-h-0"
               rows="3"
               :placeholder="t('taskForm.descriptionPlaceholder')"
             />
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="label" for="task-category">{{ t('taskForm.categoryLabel') }}</label>
               <select id="task-category" v-model="form.categoryId" class="input">
@@ -71,9 +72,10 @@
             </select>
           </div>
 
-          <div class="flex gap-3 pt-2">
-            <button type="button" class="btn-secondary flex-1" @click="$emit('close')">{{ t('taskForm.cancel') }}</button>
-            <button type="submit" class="btn-primary flex-1" :disabled="!form.title.trim()">
+          <!-- Full-width stacked buttons on mobile, side-by-side on sm+ -->
+          <div class="flex flex-col-reverse sm:flex-row gap-3 pt-2 pb-1">
+            <button type="button" class="btn-secondary w-full sm:flex-1" @click="$emit('close')">{{ t('taskForm.cancel') }}</button>
+            <button type="submit" class="btn-primary w-full sm:flex-1" :disabled="!form.title.trim()">
               {{ editTask ? t('taskForm.saveChanges') : t('taskForm.createTask') }}
             </button>
           </div>

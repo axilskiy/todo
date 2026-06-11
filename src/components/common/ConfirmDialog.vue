@@ -3,11 +3,11 @@
     <Transition name="modal">
       <div
         v-if="isOpen"
-        class="fixed inset-0 z-50 flex items-center justify-center p-4"
+        class="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
         @click.self="onCancel"
       >
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-        <div class="relative card p-6 w-full max-w-md animate-slide-up">
+        <div class="relative card p-5 sm:p-6 w-full sm:max-w-md rounded-t-2xl sm:rounded-xl animate-slide-up">
           <div class="flex items-start gap-4">
             <div
               :class="[
@@ -29,12 +29,13 @@
               <p class="text-sm text-gray-500 dark:text-gray-400">{{ options.message }}</p>
             </div>
           </div>
-          <div class="flex gap-3 mt-6 justify-end">
-            <button class="btn-secondary" @click="onCancel">
+          <!-- Full-width stacked on mobile, side-by-side on sm+ -->
+          <div class="flex flex-col-reverse sm:flex-row gap-3 mt-6">
+            <button class="btn-secondary w-full sm:w-auto sm:flex-1" @click="onCancel">
               {{ options.cancelLabel ?? 'Cancel' }}
             </button>
             <button
-              :class="options.danger ? 'btn-danger' : 'btn-primary'"
+              :class="[options.danger ? 'btn-danger' : 'btn-primary', 'w-full sm:w-auto sm:flex-1']"
               @click="onConfirm"
             >
               {{ options.confirmLabel ?? 'Confirm' }}

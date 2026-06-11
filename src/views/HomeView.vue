@@ -7,7 +7,7 @@
         icon-bg="bg-blue-100 dark:bg-blue-900/30"
       >
         <template #icon>
-          <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
         </template>
@@ -19,7 +19,7 @@
         icon-bg="bg-green-100 dark:bg-green-900/30"
       >
         <template #icon>
-          <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </template>
@@ -31,7 +31,7 @@
         icon-bg="bg-yellow-100 dark:bg-yellow-900/30"
       >
         <template #icon>
-          <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600 dark:text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </template>
@@ -43,7 +43,7 @@
         icon-bg="bg-purple-100 dark:bg-purple-900/30"
       >
         <template #icon>
-          <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </template>
@@ -69,7 +69,7 @@
         <div class="space-y-3">
           <div v-for="p in priorityStats" :key="p.key" class="flex items-center gap-3">
             <span :class="['w-2.5 h-2.5 rounded-full flex-shrink-0', p.dot]" />
-            <span class="text-sm text-gray-600 dark:text-gray-400 w-16">{{ p.label }}</span>
+            <span class="text-sm text-gray-600 dark:text-gray-400 w-14 sm:w-16 truncate">{{ p.label }}</span>
             <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
               <div
                 :class="['h-full rounded-full transition-all duration-700', p.bar]"

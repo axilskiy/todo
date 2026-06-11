@@ -10,7 +10,7 @@ function generateId(): string {
 export const useUiStore = defineStore('ui', () => {
   const theme = useLocalStorage<Theme>('taskflow-theme', 'light')
   const toasts = ref<ToastMessage[]>([])
-  const isSidebarOpen = ref(true)
+  const isSidebarOpen = ref(typeof window !== 'undefined' ? window.innerWidth >= 768 : true)
 
   watch(
     theme,

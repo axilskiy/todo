@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'flex flex-col rounded-xl border-2 transition-colors duration-150 min-h-[500px]',
+      'flex flex-col rounded-xl border-2 transition-colors duration-150 min-h-[180px] md:min-h-[500px]',
       isDragOver
         ? 'border-primary-400 bg-primary-50/50 dark:bg-primary-900/10'
         : 'border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50',
@@ -28,15 +28,16 @@
           :task="task"
           @edit="$emit('editTask', task)"
           @delete="$emit('deleteTask', task.id)"
+          @move="(status) => $emit('drop', task.id, status)"
         />
       </TransitionGroup>
 
       <div
         v-if="tasks.length === 0"
-        class="flex flex-col items-center justify-center py-10 text-center"
+        class="flex flex-col items-center justify-center py-6 text-center"
       >
-        <div class="w-12 h-12 bg-gray-200 dark:bg-gray-800 rounded-full flex items-center justify-center mb-2">
-          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-10 h-10 bg-gray-200 dark:bg-gray-800 rounded-full flex items-center justify-center mb-2">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
         </div>

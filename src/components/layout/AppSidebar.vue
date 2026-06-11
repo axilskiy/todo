@@ -1,8 +1,11 @@
 <template>
+  <!-- Sidebar: on mobile slides in/out as overlay; on desktop collapses to icon bar -->
   <aside
     :class="[
       'fixed inset-y-0 left-0 z-40 flex flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300',
-      uiStore.isSidebarOpen ? 'w-60' : 'w-16',
+      uiStore.isSidebarOpen
+        ? 'w-60 translate-x-0'
+        : 'w-60 -translate-x-full md:translate-x-0 md:w-16',
     ]"
   >
     <div class="flex items-center gap-3 px-4 py-5 border-b border-gray-200 dark:border-gray-800">
@@ -29,6 +32,7 @@
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100',
         ]"
         :title="!uiStore.isSidebarOpen ? item.label : ''"
+        @click="handleNavClick"
       >
         <component :is="item.icon" class="flex-shrink-0 w-5 h-5" />
         <Transition name="fade">
@@ -67,8 +71,9 @@
     </div>
   </aside>
 
+  <!-- Spacer: 0 on mobile when closed, w-16 on desktop when closed, w-60 when open -->
   <div
-    :class="uiStore.isSidebarOpen ? 'w-60' : 'w-16'"
+    :class="uiStore.isSidebarOpen ? 'w-60' : 'w-0 md:w-16'"
     class="transition-all duration-300 flex-shrink-0"
   />
 </template>
@@ -86,6 +91,12 @@ const { t, locale } = useI18n()
 function toggleLocale() {
   const next: SupportedLocale = locale.value === 'en' ? 'ru' : 'en'
   setLocale(next)
+}
+
+function handleNavClick() {
+  if (window.innerWidth < 768) {
+    uiStore.isSidebarOpen = false
+  }
 }
 
 const HomeIcon = () => h('svg', { fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' }, [

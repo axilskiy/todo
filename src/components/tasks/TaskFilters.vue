@@ -6,7 +6,7 @@
         :key="opt.value"
         @click="taskStore.setFilterStatus(opt.value)"
         :class="[
-          'px-3 py-1.5 rounded-md text-xs font-medium transition-colors',
+          'px-3 py-2 rounded-md text-xs font-medium transition-colors min-h-[36px]',
           taskStore.filterStatus === opt.value
             ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
@@ -19,7 +19,7 @@
     <select
       :value="taskStore.filterCategory"
       @change="taskStore.setFilterCategory(($event.target as HTMLSelectElement).value)"
-      class="input !py-1.5 !text-xs w-auto"
+      class="input !py-2 !text-xs w-auto !min-h-[36px]"
     >
       <option value="all">{{ t('filters.allCategories') }}</option>
       <option v-for="cat in categoryStore.allCategories" :key="cat.id" :value="cat.id">
@@ -30,7 +30,7 @@
     <select
       :value="taskStore.filterPriority"
       @change="taskStore.setFilterPriority(($event.target as HTMLSelectElement).value)"
-      class="input !py-1.5 !text-xs w-auto"
+      class="input !py-2 !text-xs w-auto !min-h-[36px]"
     >
       <option value="all">{{ t('filters.allPriorities') }}</option>
       <option value="high">{{ t('priority.high') }}</option>

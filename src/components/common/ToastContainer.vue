@@ -1,6 +1,7 @@
 <template>
   <Teleport to="body">
-    <div class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none" style="max-width: 360px;">
+    <!-- Full width on mobile (with margin), top-right on sm+ -->
+    <div class="fixed top-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-[360px] z-50 flex flex-col gap-2 pointer-events-none">
       <TransitionGroup name="toast">
         <ToastItem
           v-for="toast in uiStore.toasts"
